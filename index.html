@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1226">
+<title>SkyCast — Weather & Play</title>
+<style>
+:root{--bg:#08101f;--panel:rgba(18,29,52,.78);--line:rgba(255,255,255,.10);--text:#f4f7ff;--muted:#a6b4d0;--blue:#7cc8ff;--violet:#a99bff;--green:#73e4bd;--shadow:0 24px 70px #0005}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(ellipse at 12% 0%,#243a69 0,transparent 35%),radial-gradient(ellipse at 92% 20%,#35245f 0,transparent 30%),var(--bg)}
+button,input{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:26px 22px 50px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:30px}.brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#80d6ff,#9b8bff);font-size:24px;box-shadow:0 8px 28px #779dff40}.brand h1{font-size:20px;margin:0;letter-spacing:.3px}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}.pill{border:1px solid var(--line);border-radius:999px;padding:9px 13px;color:#c8d7f3;font-size:12px;background:#ffffff08}.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}.panel{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(18px);border-radius:26px;box-shadow:var(--shadow)}.weather{padding:28px;position:relative;overflow:hidden;min-height:330px}.weather:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-65px;top:-85px;background:linear-gradient(135deg,#8bcfff22,#aa9bff18);filter:blur(3px)}.search{display:flex;gap:9px;position:relative;z-index:1}.search input{min-width:0;flex:1;border:1px solid var(--line);background:#070f20a8;color:var(--text);border-radius:13px;padding:13px 15px;outline:none}.search input:focus{border-color:#83caff99}.primary{border:0;border-radius:13px;padding:12px 17px;color:#081326;font-weight:800;background:linear-gradient(135deg,#83d8ff,#b2a6ff);box-shadow:0 8px 22px #739dff30}.subtle{border:1px solid var(--line);border-radius:13px;padding:11px 13px;color:var(--text);background:#ffffff0a}.place{margin-top:28px;color:#c0cee7;font-size:14px;position:relative;z-index:1}.current{display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;z-index:1}.temp{font-size:clamp(56px,8vw,86px);font-weight:750;letter-spacing:-5px;line-height:1;margin:10px 0}.condition{font-size:18px;color:#e3eaff}.hi-lo{font-size:13px;color:var(--muted);margin-top:10px}.weather-icon{font-size:clamp(78px,12vw,118px);filter:drop-shadow(0 12px 25px #92bfff40);margin-right:15px}.status{font-size:12px;color:var(--muted);margin-top:18px;min-height:16px}.side{padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}.side h2,.section-head h2{margin:0;font-size:18px}.side p{color:var(--muted);font-size:13px;line-height:1.55;margin:8px 0}.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{border:1px solid var(--line);background:#ffffff06;border-radius:17px;padding:14px}.metric .label{font-size:12px;color:var(--muted)}.metric .value{font-size:20px;font-weight:750;margin-top:8px}.section{margin-top:24px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}.section-head p{color:var(--muted);font-size:13px;margin:5px 0 0}.forecast{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.day{padding:17px 10px;text-align:center;border:1px solid var(--line);border-radius:19px;background:#ffffff07}.day .d{font-size:12px;color:var(--muted)}.day .ico{font-size:30px;margin:13px 0}.day .hi{font-weight:750}.day .lo{font-size:12px;color:var(--muted);margin-top:4px}.game{padding:24px;display:grid;grid-template-columns:.8fr 1.2fr;gap:24px;align-items:center}.game-art{min-height:210px;border-radius:20px;background:linear-gradient(145deg,#1d3b67,#3c2b68);display:grid;place-items:center;font-size:90px;position:relative;overflow:hidden}.game-art:before,.game-art:after{content:"";position:absolute;border:1px solid #ffffff20;border-radius:50%;width:230px;height:230px}.game-art:after{width:160px;height:160px}.game-copy h3{font-size:23px;margin:0 0 8px}.game-copy p{color:var(--muted);font-size:14px;line-height:1.6}.question{font-weight:700;margin:18px 0 12px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:9px}.answer{border:1px solid var(--line);background:#ffffff08;color:var(--text);padding:12px;border-radius:12px;text-align:left}.answer:hover{border-color:#8ccfff}.answer:disabled{cursor:default;opacity:.8}.feedback{font-size:13px;min-height:20px;margin-top:12px;color:var(--green)}.game-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;font-size:12px;color:var(--muted)}.footer{text-align:center;color:#7788a9;font-size:12px;margin-top:28px;line-height:1.7}.error{color:#ffb8b8}.loading{opacity:.75}.unit-toggle{display:flex;gap:6px}.unit-toggle button{padding:7px 10px;border-radius:10px;border:1px solid var(--line);color:var(--muted);background:transparent}.unit-toggle button.active{background:#ffffff16;color:white;border-color:#ffffff2a}
+@media(max-width:780px){.hero{grid-template-columns:1fr}.weather{min-height:300px}.game{grid-template-columns:1fr}.game-art{min-height:150px;font-size:70px}.forecast{grid-template-columns:repeat(5,minmax(90px,1fr));overflow-x:auto;padding-bottom:5px}.section-head{align-items:start;flex-direction:column}.wrap{padding:18px 14px 35px}}
+@media(max-width:440px){.weather{padding:19px}.side{padding:19px}.current{gap:4px}.weather-icon{margin:0}.search{flex-wrap:wrap}.search input{flex-basis:100%}.answers{grid-template-columns:1fr 1fr}.top{margin-bottom:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">☁</div><div><h1>SkyCast</h1><p>Weather, made delightful.</p></div></div>
+    <div class="pill">☀ Live weather · Mini game</div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <section class="panel weather">
+        <form class="search" id="searchForm">
+          <input id="cityInput" aria-label="City name" placeholder="Search a city, e.g. Dehradun" value="Dehradun" autocomplete="off">
+          <button class="primary" type="submit">Check weather</button>
+          <button class="subtle" type="button" id="locBtn" title="Use your device location">⌖ My location</button>
+        </form>
+        <div class="place" id="place">Getting weather…</div>
+        <div class="current">
+          <div><div class="temp" id="temp">--°</div><div class="condition" id="condition">Loading conditions</div><div class="hi-lo" id="hiLo">Today: --° / --°</div></div>
+          <div class="weather-icon" id="weatherIcon">🌤️</div>
+        </div>
+        <div class="status" id="status" role="status">Connecting to live weather service…</div>
+      </section>
+      <aside class="panel side">
+        <div><h2>Weather details</h2><p>Quick conditions for your day. Dress comfortably and plan smart.</p></div>
+        <div class="quick">
+          <div class="metric"><div class="label">💧 Humidity</div><div class="value" id="humidity">--%</div></div>
+          <div class="metric"><div class="label">💨 Wind</div><div class="value" id="wind">-- km/h</div></div>
+          <div class="metric"><div class="label">☀ UV index</div><div class="value" id="uv">--</div></div>
+          <div class="metric"><div class="label">🌡 Feels like</div><div class="value" id="feels">--°</div></div>
+        </div>
+        <div class="unit-toggle"><button id="cBtn" class="active" type="button">°C</button><button id="fBtn" type="button">°F</button></div>
+      </aside>
+    </div>
+
+    <section class="section">
+      <div class="section-head"><div><h2>5-day outlook</h2><p>Plan ahead with the forecast.</p></div><div class="pill" id="forecastLabel">Daily forecast</div></div>
+      <div class="forecast" id="forecast"><div class="day">Loading forecast…</div></div>
+    </section>
+
+    <section class="section panel game">
+      <div class="game-art" id="gameArt" aria-hidden="true">🌦️</div>
+      <div class="game-copy">
+        <div class="pill" style="display:inline-block;margin-bottom:13px">🎮 SkyCast Play</div>
+        <h3>Weather Wizard</h3>
+        <p>Test your weather smarts! Choose the best answer, earn points, and build your streak. A quick mini-game while you check the forecast.</p>
+        <div class="question" id="question">Which instrument measures wind speed?</div>
+        <div class="answers" id="answers">
+          <button class="answer" data-answer="Thermometer">Thermometer</button>
+          <button class="answer" data-answer="Anemometer">Anemometer</button>
+          <button class="answer" data-answer="Rain gauge">Rain gauge</button>
+          <button class="answer" data-answer="Barometer">Barometer</button>
+        </div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+        <div class="game-foot"><span>⭐ Score: <b id="score">0</b> · 🔥 Streak: <b id="streak">0</b></span><button class="subtle" id="nextQ" type="button">Next question →</button></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">SkyCast is a demo project. Weather data is provided by Open-Meteo.<br>Forecasts can change; use official local alerts for severe-weather decisions.</footer>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+let weatherData=null, unit='C', score=0, streak=0, questionIndex=0, answered=false;
+const questions=[
+ {q:'Which instrument measures wind speed?',a:['Thermometer','Anemometer','Rain gauge','Barometer'],correct:'Anemometer',why:'An anemometer measures wind speed.'},
+ {q:'What do dark, towering thunderclouds often signal?',a:['A clear night','A chance of a thunderstorm','A heatwave only','No weather change'],correct:'A chance of a thunderstorm',why:'Cumulonimbus clouds are associated with thunderstorms.'},
+ {q:'Which instrument measures air pressure?',a:['Barometer','Compass','Hygrometer','Anemometer'],correct:'Barometer',why:'A barometer measures atmospheric pressure.'},
+ {q:'What does a rain gauge measure?',a:['Humidity','Wind direction','Rainfall amount','Sunlight'],correct:'Rainfall amount',why:'A rain gauge collects and measures precipitation.'},
+ {q:'Relative humidity tells us how much water vapour is in the air compared with…',a:['The maximum possible at that temperature','Wind speed','Air pressure only','Cloud height'],correct:'The maximum possible at that temperature',why:'Relative humidity is expressed as a percentage of saturation.'},
+ {q:'Which cloud type is often thin and wispy?',a:['Cirrus','Cumulonimbus','Stratus','Fog bank'],correct:'Cirrus',why:'Cirrus clouds are high, thin and wispy.'},
+ {q:'A weather forecast predicts 80% chance of rain. What should you consider?',a:['Leave the umbrella at home','Rain is quite possible','It will rain exactly 80 mm','It will definitely snow'],correct:'Rain is quite possible',why:'An 80% probability means rain is likely, not guaranteed.'}
+];
+function weatherCode(code){if(code===0)return ['Clear sky','☀️'];if([1,2].includes(code))return ['Partly cloudy','🌤️'];if(code===3)return ['Overcast','☁️'];if([45,48].includes(code))return ['Foggy','🌫️'];if([51,53,55,56,57].includes(code))return ['Drizzle','🌦️'];if([61,63,65,66,67,80,81,82].includes(code))return ['Rain','🌧️'];if([71,73,75,77,85,86].includes(code))return ['Snow','❄️'];if([95,96,99].includes(code))return ['Thunderstorm','⛈️'];return ['Conditions unavailable','🌡️'];}
+function deg(c){return unit==='C'?Math.round(c):Math.round(c*9/5+32)}
+function dayName(date,i){return i===0?'Today':new Date(date+'T12:00:00').toLocaleDateString(undefined,{weekday:'short'});}
+async function loadCity(city){
+ $('status').textContent='Searching for '+city+'…';$('status').className='status loading';
+ try{
+  const geo=await fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(city)+'&count=1&language=en&format=json');
+  if(!geo.ok)throw new Error('Could not reach the location service.');
+  const gd=await geo.json();if(!gd.results?.length)throw new Error('City not found. Try another city name.');
+  const p=gd.results[0];await loadWeather(p.latitude,p.longitude,[p.name,p.admin1,p.country].filter(Boolean).join(', '));
+ }catch(e){$('status').textContent=e.message||'Weather could not be loaded.';$('status').className='status error';}
+}
+async function loadWeather(lat,lon,name){
+ $('status').textContent='Loading live conditions…';
+ try{
+  const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto&forecast_days=5`;
+  const res=await fetch(url);if(!res.ok)throw new Error('Weather service is temporarily unavailable.');
+  weatherData=await res.json();weatherData.locationName=name;renderWeather();$('status').textContent='Updated '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' · Live data';$('status').className='status';
+ }catch(e){$('status').textContent=e.message||'Could not load weather.';$('status').className='status error';}
+}
+function renderWeather(){
+ if(!weatherData)return;const c=weatherData.current,d=weatherData.daily;const [desc,ico]=weatherCode(c.weather_code);
+ $('place').textContent='📍 '+weatherData.locationName;$('temp').textContent=deg(c.temperature_2m)+'°';$('condition').textContent=desc;
+ $('weatherIcon').textContent=ico;$('hiLo').textContent=`Today: ${deg(d.temperature_2m_max[0])}° / ${deg(d.temperature_2m_min[0])}°`;
+ $('humidity').textContent=Math.round(c.relative_humidity_2m)+'%';$('wind').textContent=Math.round(c.wind_speed_10m)+' km/h';
+ $('uv').textContent=d.uv_index_max?.[0]??'--';$('feels').textContent=deg(c.apparent_temperature)+'°';
+ $('forecast').innerHTML=d.time.map((date,i)=>{const [text,icon]=weatherCode(d.weather_code[i]);return `<div class="day"><div class="d">${dayName(date,i)}</div><div class="ico" title="${text}">${icon}</div><div class="hi">${deg(d.temperature_2m_max[i])}°</div><div class="lo">${deg(d.temperature_2m_min[i])}°</div></div>`}).join('');
+ $('forecastLabel').textContent=weatherData.locationName.split(',')[0]+' · 5 days';
+}
+$('searchForm').addEventListener('submit',e=>{e.preventDefault();const city=$('cityInput').value.trim();if(city)loadCity(city);});
+$('locBtn').addEventListener('click',()=>{if(!navigator.geolocation){$('status').textContent='Location is not supported by this browser.';return;}$('status').textContent='Requesting your location…';navigator.geolocation.getCurrentPosition(pos=>loadWeather(pos.coords.latitude,pos.coords.longitude,'Your current location'),()=>{$('status').textContent='Location permission denied. Search for a city instead.';$('status').className='status error';});});
+$('cBtn').addEventListener('click',()=>{unit='C';$('cBtn').classList.add('active');$('fBtn').classList.remove('active');renderWeather();});
+$('fBtn').addEventListener('click',()=>{unit='F';$('fBtn').classList.add('active');$('cBtn').classList.remove('active');renderWeather();});
+function showQuestion(){answered=false;const q=questions[questionIndex%questions.length];$('question').textContent=q.q;$('gameArt').textContent=['🌦️','🌩️','🌈','☀️','🌪️','☁️','🌧️'][questionIndex%7];$('feedback').textContent='';$('answers').innerHTML=q.a.map(a=>`<button class="answer" data-answer="${a.replaceAll('"','&quot;')}">${a}</button>`).join('');}
+$('answers').addEventListener('click',e=>{const b=e.target.closest('button[data-answer]');if(!b||answered)return;answered=true;const q=questions[questionIndex%questions.length];const ok=b.dataset.answer===q.correct;if(ok){score+=10;streak++;$('feedback').textContent='Correct! +10 points. '+q.why;$('feedback').style.color='var(--green)';}else{streak=0;$('feedback').textContent='Not quite. '+q.why;$('feedback').style.color='#ffbd9c';} $('score').textContent=score;$('streak').textContent=streak;[...$('answers').querySelectorAll('button')].forEach(x=>{x.disabled=true;if(x.dataset.answer===q.correct)x.style.borderColor='#73e4bd';});});
+$('nextQ').addEventListener('click',()=>{questionIndex++;showQuestion();});
+showQuestion();loadCity('Dehradun');
+</script>
+</body>
+</html>
